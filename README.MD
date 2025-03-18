@@ -85,3 +85,84 @@ For the best development experience, install these VS Code extensions:
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 - [Node.js Documentation](https://nodejs.org/en/docs/)
 - [ts-node Documentation](https://github.com/TypeStrong/ts-node)
+
+# How to Clone a GitHub Repository and Create a New Project
+
+This guide explains how to clone an existing GitHub repository and turn it into a new project with a different name.
+
+## Prerequisites
+- Git installed on your system
+- GitHub account
+- Command line interface (Terminal/Command Prompt)
+
+## Step-by-Step Instructions
+
+### 1. Clone the original repository
+```bash
+git clone git@github.com:ManelBrull/typescript-node-learning.git
+```
+
+### 2. Rename the local folder
+```bash
+mv typescript-node-learning your-new-project-name
+cd your-new-project-name
+```
+
+### 3. Remove the existing Git history
+```bash
+rm -rf .git
+```
+
+### 4. Initialize a new Git repository
+```bash
+git init
+```
+
+### 5. Create a new repository on GitHub
+- Go to https://github.com/new
+- Enter your new repository name
+- Choose public or private visibility
+- Do not initialize with README, .gitignore, or license
+- Click "Create repository"
+
+### 6. Update project details
+Edit the `package.json` file to update:
+```json
+{
+  "name": "your-new-project-name",
+  "description": "Your new project description",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/your-new-project-name.git"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
+```
+
+### 7. Stage all files
+```bash
+git add .
+```
+
+### 8. Commit the files
+```bash
+git commit -m "Initial commit from cloned project"
+```
+
+### 9. Connect to your new GitHub repository
+```bash
+git remote add origin https://github.com/your-username/your-new-project-name.git
+```
+
+### 10. Push to your new repository
+```bash
+git push -u origin main
+```
+
+## Result
+You now have a fresh project with all the code from the original repository, but with:
+- A new project name
+- A clean Git history
+- Your own repository on GitHub
