@@ -166,3 +166,56 @@ You now have a fresh project with all the code from the original repository, but
 - A new project name
 - A clean Git history
 - Your own repository on GitHub
+
+# Setting up TypeScript ESLint Plugin in VSCode
+
+## Installation
+
+1. Install the required npm packages in your project:
+   ```
+   bash npm install --save-dev eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin
+   bash npm install --save-dev eslint @eslint/js typescript typescript-eslint
+   ```
+
+## Configuration
+
+2. Create a `eslint.config.mjs` file in your project root:
+   ```js
+  // @ts-check
+  import eslint from '@eslint/js';
+  import tseslint from 'typescript-eslint';
+
+  export default tseslint.config(
+    eslint.configs.recommended,
+    tseslint.configs.recommended,
+  );
+   ```
+
+## VSCode Setup
+
+3. Install the ESLint extension for VSCode:
+   - Open the Extensions view (Ctrl+Shift+X or Cmd+Shift+X)
+   - Search for "ESLint"
+   - Install the one by Microsoft
+
+4. Configure VSCode settings to enable ESLint for TypeScript:
+   - Open settings (Ctrl+, or Cmd+,)
+   - Search for "eslint validate"
+   - Add "typescript" and "typescriptreact" to the "ESLint: Validate" setting
+   - Or add this to your settings.json:
+     ```json
+     "eslint.validate": [
+       "javascript",
+       "javascriptreact",
+       "typescript",
+       "typescriptreact"
+     ]
+     ```
+
+5. Restart VSCode or reload the window
+
+## Verification
+
+6. Open a TypeScript file with unused variables, and they should now be highlighted with ESLint warnings
+
+> **Note:** The `@typescript-eslint/no-unused-vars` rule in your ESLint config is what specifically catches unused variables. You can set it to "error" instead of "warn" if you prefer errors rather than warnings.
